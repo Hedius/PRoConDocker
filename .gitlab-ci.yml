@@ -17,4 +17,3 @@ docker-build-gitlab:
     - docker push "$CI_REGISTRY_IMAGE" -a
   rules:
     - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
-
