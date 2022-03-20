@@ -10,10 +10,10 @@ docker-build-gitlab:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     # Default: Europe/Berlin
-    - docker build --pull -t "$CI_REGISTRY_IMAGE:latest" -t "$CI_REGISTRY_IMAGE:cet"   --build-arg TZ="Europe/Berlin" .
-    - docker build "$CI_REGISTRY_IMAGE:est" --build-arg=TZ="America/New_York" .
-    - docker build "$CI_REGISTRY_IMAGE:pst" --build-arg=TZ="America/San_Francisco" .
-    - docker build "$CI_REGISTRY_IMAGE:cst" --build-arg=TZ="America/Chicago" .
-    - docker push "$CI_REGISTRY_IMAGE" -a
+    - docker build --pull --build-arg TZ="Europe/Berlin" -t "$CI_REGISTRY_IMAGE:latest" -t "$CI_REGISTRY_IMAGE:cet" . 
+    - docker build --build-arg=TZ="America/New_York" -t "$CI_REGISTRY_IMAGE:est" .
+    - docker build --build-arg=TZ="America/San_Francisco" -t "$CI_REGISTRY_IMAGE:pst" .
+    - docker build --build-arg=TZ="America/Chicago" -t "$CI_REGISTRY_IMAGE:cst" .
+    - docker push -a "$CI_REGISTRY_IMAGE"
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

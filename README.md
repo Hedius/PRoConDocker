@@ -16,6 +16,11 @@ The images are also available over gitlab:
 registry.gitlab.com:e4gl/procon:lastest ...
 ```
 
+## Permissions
+The image runs with UID and GID 5000 (non-root).
+
+Make sure that all files within volumes are owned by that user.
+
 ## Volumes
 * /opt/procon/Configs
 * /opt/procon/Plugins
