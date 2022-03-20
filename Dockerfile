@@ -7,7 +7,7 @@ ARG UID=5000
 ARG GID=5000
 ARG TZ="Europe/Berlin"
 ARG FILE="procon.zip"
-ARG DLURL="https://api.myrcon.net/procon/download?p=docker&v=1.5.3.0"
+ARG DLURL="https://api.myrcon.net/procon/download?p=docker"
 
 LABEL maintainer="Hedius @ gitlab.com/hedius" \
       description="PRoCon Docker image" \
