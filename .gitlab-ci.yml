@@ -1,4 +1,4 @@
-environment:
+variables:
   HUB_IMAGE: "hedius/procon"
 
 stages:
