@@ -13,9 +13,6 @@ LABEL maintainer="Hedius @ gitlab.com/hedius" \
       description="PRoCon Docker image" \
       version="1.0"
 
-# set timezone
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
 # install unzip, wget
 RUN apt-get update && apt-get install -y unzip wget iputils-ping
 
@@ -31,6 +28,9 @@ RUN wget -O $FILE $DLURL && \
     unzip -x $FILE && \
     chown procon:procon -R /opt/procon && \
     rm -r Configs Plugins $FILE
+
+# set timezone
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 USER  procon:procon
 

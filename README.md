@@ -1,5 +1,9 @@
 # PRoCon Docker
 
+[![pipeline status](https://gitlab.com/e4gl/procon/badges/main/pipeline.svg)](https://gitlab.com/e4gl/procon/-/commits/main)
+[![Discord](https://img.shields.io/discord/388757799875903489.svg?colorB=7289DA&label=Discord&logo=Discord&logoColor=7289DA&style=flat-square)](https://discord.e4gl.com/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/hedius/procon.svg?style=flat-square)](https://hub.docker.com/r/hedius/procon/)
+
 A docker image for the lastest PRoCon release.
 
 ## Available images
