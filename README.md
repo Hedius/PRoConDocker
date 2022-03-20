@@ -7,16 +7,22 @@
 A docker image for the lastest PRoCon release.
 
 ## Available images
-```
+The time zone is set at build time. (Should be replaces by an entrypoint :) )
+You can request new time zones by opening an issue or contacting me over discord (Hedius#0001).
+
 For Europe: Time zone Europe/Berlin CET/CEST
+```
 hedius/procon:latest hedius/procon:cet
+```
 
 For USA: (Automatically switches to daylight saving time)
+```
 hedius/procon:cst
 hedius/procon:pst
 hedius/procon:est
 
 The images are also available over gitlab:
+```
 registry.gitlab.com:e4gl/procon:lastest ...
 ```
 
