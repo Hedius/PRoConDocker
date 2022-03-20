@@ -1,3 +1,6 @@
+environment:
+  HUB_IMAGE: "hedius/procon"
+
 stages:
   - build
 
@@ -15,5 +18,22 @@ docker-build-gitlab:
     - docker build --build-arg=TZ="America/San_Francisco" -t "$CI_REGISTRY_IMAGE:pst" .
     - docker build --build-arg=TZ="America/Chicago" -t "$CI_REGISTRY_IMAGE:cst" .
     - docker push -a "$CI_REGISTRY_IMAGE"
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+docker-build-dockerhub:
+  image: docker:latest
+  stage: build
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER_DOCKERHUB" -p "$CI_REGISTRY_PASSWORD_DOCKERHUB"
+  script:
+    # Default: Europe/Berlin
+    - docker build --pull --build-arg TZ="Europe/Berlin" -t "$HUB_IMAGE:latest" -t "$HUB_IMAGE:cet" . 
+    - docker build --build-arg=TZ="America/New_York" -t "$HUB_IMAGE:est" .
+    - docker build --build-arg=TZ="America/San_Francisco" -t "$HUB_IMAGE:pst" .
+    - docker build --build-arg=TZ="America/Chicago" -t "$HUB_IMAGE:cst" .
+    - docker push -a "$HUB_IMAGE"
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
