@@ -1,0 +1,20 @@
+stages:
+  - build
+
+docker-build-gitlab:
+  image: docker:latest
+  stage: build
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    # Default: Europe/Berlin
+    - docker build --pull -t "$CI_REGISTRY_IMAGE:latest" -t "$CI_REGISTRY_IMAGE:cet"   --build-arg TZ="Europe/Berlin" .
+    - docker build "$CI_REGISTRY_IMAGE:est"   --build-arg TZ="America/New_York" .
+    - docker build "$CI_REGISTRY_IMAGE:pst"   --build-arg TZ="America/San_Francisco" .
+    - docker build "$CI_REGISTRY_IMAGE:cst"   --build-arg TZ="America/Chicago" .
+    - docker push "$CI_REGISTRY_IMAGE" -a
+  rules:
+    - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+
