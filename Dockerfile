@@ -14,7 +14,9 @@ LABEL maintainer="Hedius @ gitlab.com/hedius" \
       version="1.0"
 
 # install unzip, wget
-RUN apt-get update && apt-get install -y unzip wget iputils-ping
+RUN apt-get update && \
+    apt-get install -y unzip wget iputils-ping && \
+    rm -rf /var/lib/apt/lists/*
 
 # account for execution
 RUN groupadd -r -g $GID procon && \
