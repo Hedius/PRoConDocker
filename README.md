@@ -20,6 +20,7 @@ For USA: (Automatically switches to daylight saving time)
 hedius/procon:cst
 hedius/procon:pst
 hedius/procon:est
+```
 
 The images are also available over gitlab:
 ```
