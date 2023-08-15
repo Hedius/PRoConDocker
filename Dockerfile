@@ -7,7 +7,9 @@ ARG UID=5000
 ARG GID=5000
 ARG TZ="Europe/Berlin"
 ARG FILE="procon.zip"
-ARG DLURL="https://api.myrcon.net/procon/download?p=docker"
+# ARG DLURL="https://api.myrcon.net/procon/download?p=docker"
+# Custom E4GL image for also logging spawn events.
+ARG DLURL="https://github.com/Hedius/Procon-1/releases/download/v1.5.4.0-e4gl/latest_procon.zip"
 
 LABEL maintainer="Hedius @ gitlab.com/hedius" \
       description="PRoCon Docker image" \
